@@ -19,6 +19,7 @@ using UnityEngine.UI;
     [SerializeField] private int stackCount = 0;
     [SerializeField] private int stackLimit = 1;
     [SerializeField] private Sprite itemIcon;
+    [SerializeField] protected Sprite emptySlotIcon;
 
     private Item currentItem;
     public Item CurrentItem
@@ -37,6 +38,8 @@ using UnityEngine.UI;
     public Sprite ItemIcon { get => itemIcon; set => itemIcon = value; }
 
 
+
+
     public Slot(int stackLimit = 1)
     {
         StackLimit= stackLimit;    
@@ -44,12 +47,13 @@ using UnityEngine.UI;
 
     public virtual void AddItem(Item item)
     {   //if the slot is empty, add the item
+        TextMeshProUGUI stackLbl= GetComponentInChildren<TextMeshProUGUI>();
         if (CurrentItem == null)
         {
             IsOccupied = true;
             CurrentItem = item;
             StackCount = 1;
-            TextMeshProUGUI stackLbl= GetComponentInChildren<TextMeshProUGUI>();
+            StackLimit = item.MaxStackSize;
             //if stack limit is greater than 1, show the stack count
             if (StackLimit> 1)
             {
@@ -65,11 +69,16 @@ using UnityEngine.UI;
             //this means the image component meant to hold the sprite(icon) of the item 
             //held in the slot must always be the first child of the parent slot object
             GetComponentsInChildren<Image>()[1].sprite = ItemIcon;
+            if (item is IPassiveItem passiveItem)
+            {
+                passiveItem.Equip();
+            }
 
         } //if the item is stackable and the same as the current item, increase the stack count
         else if (CurrentItem.GetType() == item.GetType() && StackCount < StackLimit)
         {
             StackCount = StackCount + 1;
+            stackLbl.text = StackCount.ToString();
         }
     }
 
@@ -78,13 +87,23 @@ using UnityEngine.UI;
         if (StackCount > 1)
         {
             StackCount--;
+            GetComponentInChildren<TextMeshProUGUI>().text = StackCount.ToString();
+            
         }
         else
         {
+            if(CurrentItem is IPassiveItem passiveItem)
+            {
+                passiveItem.Unequip();
+            }
             CurrentItem = null;
             StackCount = 0;
             IsOccupied = false;
+            GetComponentsInChildren<Image>()[1].sprite  = emptySlotIcon;
+            GetComponentInChildren<TextMeshProUGUI>().text = "";
+            
         }
+        
     }
 
     public abstract void OnHover();
@@ -122,6 +141,29 @@ public class EquipmentSlot : Slot
         }
     }
 
+     public override void RemoveItem()
+    {
+        if (StackCount > 1)
+        {
+            StackCount--;
+            GetComponentInChildren<TextMeshProUGUI>().text = StackCount.ToString();
+            
+        }
+        else
+        {
+            if(CurrentItem is IPassiveItem passiveItem)
+            {
+                passiveItem.Unequip();
+            }
+            CurrentItem = null;
+            StackCount = 0;
+            IsOccupied = false;
+            GetComponent<Image>().sprite  = emptySlotIcon;
+            GetComponentInChildren<TextMeshProUGUI>().text = "";
+            
+        }
+        
+    }
     public override void OnHover()
     {
         // Display equipment item info
@@ -197,6 +239,7 @@ public class ItemSlot : Slot
             {
                 RemoveItem();
             }
+            
         }
     }
 

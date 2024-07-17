@@ -67,13 +67,22 @@ public interface IActiveItem
     float CooldownTime { get; }
 }
 
+/// <summary>
+/// Effects that change over time must be implemented using a coroutine and started in the ApplyPassiveEffect method.
+/// </summary>
 public interface IPassiveItem
 {
     void ApplyPassiveEffect();
+    void RemovePassiveEffect();
+    void Equip();
+    void Unequip();
 }
 
 public interface IHybridItem : IActiveItem, IPassiveItem { }
 
+/// <summary>
+/// Active Items by default are not reusable and have a cooldown time of 0.
+/// </summary>
 public class ActiveItem : Item, IActiveItem
 {
     public bool IsReusable { get; set; }
@@ -84,11 +93,13 @@ public class ActiveItem : Item, IActiveItem
         ItemType = ItemType.Active;
     }
 
-    public void Use()
+    public virtual void Use()
     {
         Debug.Log("Used an active item");
     }
+
 }
+
 
 public class PassiveItem : Item, IPassiveItem
 {
@@ -96,10 +107,16 @@ public class PassiveItem : Item, IPassiveItem
     {
         ItemType = ItemType.Passive;
     }
-    public void ApplyPassiveEffect()
+    public virtual void ApplyPassiveEffect()
     {
         // Logic for applying the passive effect
         Debug.Log("Applying passive item's passive effect");
+    }
+
+    public virtual void RemovePassiveEffect()
+    {
+        // Logic for removing the passive effect
+        Debug.Log("Removing passive item's passive effect");
     }
 
     public void Equip()
@@ -125,16 +142,22 @@ public class HybridItem : Item, IHybridItem
     }
 
     // Active Item Method
-    public void Use()
+    public virtual void Use()
     {
         Debug.Log("Using the hybrid item actively");
     }
 
     // Passive Item Method
-    public void ApplyPassiveEffect()
+    public virtual void ApplyPassiveEffect()
     {
         Debug.Log("Applying hybrid item's passive effect");
         // Logic for applying the passive effect
+    }
+
+    public void RemovePassiveEffect()
+    {
+        Debug.Log("Removing hybrid item's passive effect");
+        // Logic for removing the passive effect
     }
 
     public void Equip()
@@ -154,10 +177,18 @@ public class EquipmentItem : Item, IPassiveItem
     {
         ItemType = itemType;
     }
+    public void SetEquipmentItemType(ItemType itemType)
+    {
+        ItemType = itemType;
+    }
    
-    public void ApplyPassiveEffect()
+    public virtual void ApplyPassiveEffect()
     {
         
+    }
+
+    public virtual void RemovePassiveEffect(){
+
     }
 
      public void Equip()

@@ -21,6 +21,8 @@ public class PopulateGrid : MonoBehaviour
     [SerializeField] private bool fixedCellSize = false;
     private GridLayoutGroup gridLayoutGroup; // The grid layout group component
     [SerializeField] private RectTransform gridPanel;
+    [SerializeField] private bool fixedRows;
+    [SerializeField] private bool fixedColumns;
 
     private GameObject[] cells;
 
@@ -43,8 +45,17 @@ public class PopulateGrid : MonoBehaviour
     /// </summary>
     private IEnumerator Populate()
     {
-        gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        gridLayoutGroup.constraintCount = columns;
+        if (fixedColumns)
+        {
+            gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            gridLayoutGroup.constraintCount = columns;
+        }
+        if (fixedRows)
+        {
+            gridLayoutGroup.constraint = GridLayoutGroup.Constraint.FixedRowCount;
+            gridLayoutGroup.constraintCount = rows;
+        }
+
 
         if (!fixedCellSize)
         {
@@ -79,7 +90,7 @@ public class PopulateGrid : MonoBehaviour
             }
 
             inventoryManager.itemSlotList.AddRange(Cells);
-            yield return null; 
+            yield return null;
             inventoryManager.InitializeSlots();
         }
     }

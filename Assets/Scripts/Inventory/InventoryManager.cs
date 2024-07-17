@@ -58,25 +58,7 @@ public class InventoryManager : MonoBehaviour
     /// </summary>
     public bool AddItem(Item item)
     {
-        // Check for stackable items in hotkey slots
-        if (item.IsStackable && TryStackItem(item, hotkeysSlotList))
-        {
-            return true;
-        }
-
-        // Check for stackable items in item slots
-        if (item.IsStackable && TryStackItem(item, itemSlotList))
-        {
-            return true;
-        }
-
-        // Check for available item slots
-        if (TryAddToEmptySlot(item, itemSlotList))
-        {
-            return true;
-        }
-
-        // Check for charm slots
+        // Try to equip equipment to equip slots first if empty
         switch (item.ItemType)
         {
             case ItemType.HeadEquip:
@@ -98,6 +80,24 @@ public class InventoryManager : MonoBehaviour
                 }
                 break;
         }
+        // Check for stackable items in hotkey slots
+        if (item.IsStackable && TryStackItem(item, hotkeysSlotList))
+        {
+            return true;
+        }
+
+        // Check for stackable items in item slots
+        if (item.IsStackable && TryStackItem(item, itemSlotList))
+        {
+            return true;
+        }
+
+        // Check for available item slots
+        if (TryAddToEmptySlot(item, itemSlotList))
+        {
+            return true;
+        }
+
 
         // If no slot is available, return false
         return false;

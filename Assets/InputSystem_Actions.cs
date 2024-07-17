@@ -16,10 +16,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using UnityEngine;
 
-public partial class @playerControls: IInputActionCollection2, IDisposable
+public partial class @PlayerControls: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @playerControls()
+    public @PlayerControls()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputSystem_Actions"",
@@ -104,7 +104,7 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -710,6 +710,15 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotkeys"",
+                    ""type"": ""Value"",
+                    ""id"": ""112956f3-18cc-4409-9a3d-979b8669525c"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -1174,6 +1183,116 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1e45e64-9f29-47ab-86d7-90dc71dd14ad"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba4c652f-4f53-47cf-a92c-d7dcbd01e3ff"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=2)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ea9aa7c-f735-4244-a6f7-7a301f67c58e"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=3)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6748b52-9c0f-4da6-8985-d9695e5d95a2"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=4)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54cd2537-4b5e-45a1-a89a-7b7a63d76191"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=5)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""016fb565-43c1-4ce1-9fb6-1b962b834708"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=6)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4badc485-aa00-4d20-a7ad-71062437066e"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=7)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96d121f7-f97e-4f49-8cea-1add26f015ed"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=8)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a2fd59d-2759-42a6-92c8-f0a3b35db6dd"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=9)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2998953-400c-4aca-bce7-e4e968937d87"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=10)"",
+                    ""groups"": """",
+                    ""action"": ""Hotkeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1265,12 +1384,13 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_Inventory = m_UI.FindAction("Inventory", throwIfNotFound: true);
+        m_UI_Hotkeys = m_UI.FindAction("Hotkeys", throwIfNotFound: true);
     }
 
-    ~@playerControls()
+    ~@PlayerControls()
     {
-        Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, playerControls.Player.Disable() has not been called.");
-        Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, playerControls.UI.Disable() has not been called.");
+        Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
+        Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -1343,8 +1463,8 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
-        private @playerControls m_Wrapper;
-        public PlayerActions(@playerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
@@ -1453,10 +1573,11 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_Inventory;
+    private readonly InputAction m_UI_Hotkeys;
     public struct UIActions
     {
-        private @playerControls m_Wrapper;
-        public UIActions(@playerControls wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
@@ -1468,6 +1589,7 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @Inventory => m_Wrapper.m_UI_Inventory;
+        public InputAction @Hotkeys => m_Wrapper.m_UI_Hotkeys;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1510,6 +1632,9 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Hotkeys.started += instance.OnHotkeys;
+            @Hotkeys.performed += instance.OnHotkeys;
+            @Hotkeys.canceled += instance.OnHotkeys;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1547,6 +1672,9 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Hotkeys.started -= instance.OnHotkeys;
+            @Hotkeys.performed -= instance.OnHotkeys;
+            @Hotkeys.canceled -= instance.OnHotkeys;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1634,5 +1762,6 @@ public partial class @playerControls: IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnInventory(InputAction.CallbackContext context);
+        void OnHotkeys(InputAction.CallbackContext context);
     }
 }

@@ -155,13 +155,9 @@ public class HotKeySlot : Slot
         // Display hotkey item info
     }
 
-    private void Update()
-    {
-        CheckForKeyPress();
-    }
-
     private void UseItem()
     {
+        Debug.Log("Using hotkey "+ AssignedNumber);
         if (CurrentItem is IActiveItem activeItem)
         {
             activeItem.Use();
@@ -175,20 +171,6 @@ public class HotKeySlot : Slot
     public override void OnLeftClick()
     {
         UseItem();
-    }
-    //to do: change to new input system
-    private void CheckForKeyPress()
-    {
-
-        if (Input.GetKeyDown(AssignedNumber.ToString()))
-        {
-            UseItem();
-        }
-        // For number keys above 1-9, KeyCode.Alpha0 represents the "0" key
-        else if (AssignedNumber == 0 && Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            UseItem();
-        }
     }
 
     public override void OnRightClick()

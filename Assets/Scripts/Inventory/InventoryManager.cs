@@ -46,7 +46,8 @@ public class InventoryManager : MonoBehaviour
 
         foreach (GameObject slot in hotkeysSlotList)
         {
-            slot.AddComponent<HotKeySlot>();
+            HotKeySlot hotKey = slot.AddComponent<HotKeySlot>();
+            hotKey.AssignedNumber = hotkeysSlotList.IndexOf(slot)+1;
             SlotUI slotUI = slot.AddComponent<SlotUI>();
             slotUI.slot = slot.GetComponent<HotKeySlot>();
         }
@@ -185,4 +186,10 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+    public void UseHotkey(int hotkeyNumber)
+    {
+        //I would like UseItem to remain private because I'm obssessed with encapsulation rn
+        hotkeysSlotList[hotkeyNumber].GetComponent<HotKeySlot>().OnLeftClick();
+        
+    }
 }

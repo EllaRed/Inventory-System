@@ -23,12 +23,14 @@ public class DummyPassiveItem : PassiveItem
         }
         StartCoroutine(ChangeColor());     
     }
-
     IEnumerator ChangeColor()
     {
-        Color randomColor = new Color(Random.value, Random.value, Random.value);
-        targetRenderer.material.color = randomColor;
-        yield return new WaitForSeconds(0.5f);   
+        while (true)
+        {
+            Color randomColor = new Color(Random.value, Random.value, Random.value);
+            targetRenderer.material.color = randomColor;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public override void RemovePassiveEffect()

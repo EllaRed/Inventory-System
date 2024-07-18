@@ -14,8 +14,9 @@ public class CreateItem : MonoBehaviour
         
            itemObjects[0].AddComponent<HybridItem>();
            
-           itemObjects[1].AddComponent<EquipmentItem>().SetEquipmentItemType(ItemType.HeadEquip);
+           itemObjects[1].AddComponent<EquipmentItem>().SetEquipmentItemType(ItemType.TopEquip);
            itemObjects[1].GetComponent<EquipmentItem>().ItemName = "bodice";
+
            
            //Delegates can be used to assign custom methods to the item objects, but would get very messy very fast in a complex project
            //Feel free to correct me if I'm wrong!

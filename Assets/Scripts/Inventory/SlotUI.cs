@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// <para>Emmanuella Dasilva-Domingos</para>
 /// <para>Last Updated: July 17, 2024</para>
 /// </summary>
-public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IDropHandler
 {
     public Slot slot;
     public AudioSource clickSound;
@@ -46,6 +46,24 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             }
         }
         lastClickTime = Time.time;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (eventData.pointerDrag.GetComponent<DraggableItem>().Item != null)
+        {
+            DraggableItem draggedItem = eventData.pointerDrag.GetComponent<DraggableItem>();
+            Item item  = draggedItem.Item;
+            Debug.Log("item stack: "+ item.CurrentStackSize);
+            Slot formerSlot = draggedItem.Slot;
+            if(formerSlot==slot)
+                return;
+            slot.AddItem(item,formerSlot);
+                
+
+            
+         
+        }
     }
 }
 

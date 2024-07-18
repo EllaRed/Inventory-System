@@ -52,6 +52,14 @@ public abstract class Item : MonoBehaviour
         set { maxStackSize = value; }
     }
 
+    [SerializeField]
+    private int currentStackSize = 1;
+    public int CurrentStackSize
+    {
+        get { return currentStackSize; }
+        set { currentStackSize = value; }
+    }
+
     public bool IsStackable => MaxStackSize > 1;
 
     public ItemType ItemType { get; set; }

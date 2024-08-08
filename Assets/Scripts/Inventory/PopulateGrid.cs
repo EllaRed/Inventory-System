@@ -5,11 +5,10 @@ using UnityEngine.UI;
 /// <summary>
 /// This class is used to populate a grid with the given number of rows and columns.
 /// <para>Emmanuella Dasilva-Domingos</para>
-/// <para>Last Updated: July 17, 2024</para>
+/// <para>Last Updated: August 7, 2024</para>
 /// </summary>
 
-[RequireComponent(typeof(GridLayoutGroup))]
-[RequireComponent(typeof(RectTransform))]
+
 public class PopulateGrid : MonoBehaviour
 {
     [SerializeField] private GameObject cellPrefab; // The grid cells to instantiate and fill up the grid
@@ -60,18 +59,19 @@ public class PopulateGrid : MonoBehaviour
         if (!fixedCellSize)
         {
 
-            // Get the size of the panel
-            float panelWidth = gridPanel.rect.width;
-            float panelHeight = gridPanel.rect.height;
+            gridLayoutGroup.spacing = new Vector2(horizontalSpacing, verticalSpacing);
+            // Get the space available for the grid
+            float panelWidth = gridPanel.rect.width - (gridLayoutGroup.padding.left + gridLayoutGroup.padding.right);
+            float panelHeight = gridPanel.rect.height - (gridLayoutGroup.padding.top + gridLayoutGroup.padding.bottom);
 
             // Calculate the size of each cell
-            float cellWidth = panelWidth / columns;
-            float cellHeight = panelHeight / rows;
-            float cellSize = (cellHeight + cellWidth) / 2;
-
+            float cellWidth = (panelWidth - (gridLayoutGroup.spacing.x * (columns - 1))) / columns;
+            float cellHeight = (panelHeight - (gridLayoutGroup.spacing.y * (rows - 1))) / rows;
+            float cellSize = Mathf.Min(cellHeight, cellWidth);
 
             gridLayoutGroup.cellSize = new Vector2(cellSize, cellSize); //square cells
-            gridLayoutGroup.spacing = new Vector2(horizontalSpacing, verticalSpacing);
+            float exactHorizontalSpacing = (panelWidth - (cellSize * columns)) / (columns - 1);
+            gridLayoutGroup.spacing = new Vector2(exactHorizontalSpacing-((gridLayoutGroup.padding.left+1)/4), verticalSpacing);
         }
 
         if (cellPrefab != null)
